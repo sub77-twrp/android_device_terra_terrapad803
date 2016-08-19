@@ -1,0 +1,25 @@
+From 42f0fbaf4cf8bca1cce19cffb27739ce71616cf9 Mon Sep 17 00:00:00 2001
+From: sub77 <sub77@ymail.com>
+Date: Sat, 27 Aug 2016 21:48:10 +0200
+Subject: [PATCH] Fix build error
+
+Change-Id: Ifcb768e331d9bd4bae3327962fdd091eb0516640
+---
+ init/init.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/init/init.cpp b/init/init.cpp
+index 6f54282..313f759 100644
+--- a/init/init.cpp
++++ b/init/init.cpp
+@@ -854,6 +854,7 @@ static void export_kernel_boot_props() {
+ 
+ #ifndef IGNORE_RO_BOOT_REVISION
+         { "ro.boot.revision",   "ro.revision",   "0", },
++#endif
+     };
+     for (size_t i = 0; i < ARRAY_SIZE(prop_map); i++) {
+         char value[PROP_VALUE_MAX];
+-- 
+2.9.3
+

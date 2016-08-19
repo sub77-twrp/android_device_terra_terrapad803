@@ -1,0 +1,32 @@
+From ca24d4428824c13ea0b6784dfa34526e4a10f2f4 Mon Sep 17 00:00:00 2001
+From: ferhung <ferhung27@gmail.com>
+Date: Tue, 16 Aug 2016 07:28:54 +0800
+Subject: [PATCH 1/2] minuitwrp: fix some devices having a blank screen.
+
+For some devices having a blank screen on boot.
+To enable TW_NO_SCREEN_BLANK again, which was missed in twrp for a long time,
+TW_NO_SCREEN_BLANK has been included in graphics_fbdev, although.
+Set TW_NO_SCREEN_BLANK := true in BoardConfig.mk.
+
+Signed-off-by: sub77 <sub77@ymail.com>
+---
+ minuitwrp/Android.mk | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/minuitwrp/Android.mk b/minuitwrp/Android.mk
+index 5124666..18b7adc 100644
+--- a/minuitwrp/Android.mk
++++ b/minuitwrp/Android.mk
+@@ -137,6 +137,9 @@ endif
+ ifeq ($(TW_SCREEN_BLANK_ON_BOOT), true)
+     LOCAL_CFLAGS += -DTW_SCREEN_BLANK_ON_BOOT
+ endif
++ifeq ($(TW_NO_SCREEN_BLANK), true)
++    LOCAL_CFLAGS += -DTW_NO_SCREEN_BLANK
++endif
+ ifeq ($(TW_FBIOPAN), true)
+     LOCAL_CFLAGS += -DTW_FBIOPAN
+ endif
+-- 
+2.9.3
+

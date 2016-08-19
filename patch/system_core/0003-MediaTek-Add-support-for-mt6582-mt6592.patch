@@ -1,0 +1,54 @@
+From e4dd6beb5457385410814e0a1a1e1d2e57098dbe Mon Sep 17 00:00:00 2001
+From: ferhung-mtk <ferhung27@gmail.com>
+Date: Sun, 17 Apr 2016 17:06:12 +0800
+Subject: [PATCH 03/10] MediaTek: Add support for mt6582 & mt6592.
+
+Change-Id: I76fc07cf16880cff5da7f8fc5606133b0ea4882f
+Signed-off-by: sub77 <sub77@ymail.com>
+---
+ init/Android.mk | 8 ++++++++
+ init/init.cpp   | 9 ++++++++-
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/init/Android.mk b/init/Android.mk
+index eb2543a..c1f405a 100755
+--- a/init/Android.mk
++++ b/init/Android.mk
+@@ -50,6 +50,14 @@ LOCAL_SRC_FILES:= \
+     vendor_init.c \
+     watchdogd.cpp \
+ 
++ifeq ($(TARGET_BOARD_PLATFORM),mt6582)
++LOCAL_CFLAGS += -DMTK_MT6582
++endif
++
++ifeq ($(TARGET_BOARD_PLATFORM),mt6592)
++LOCAL_CFLAGS += -DMTK_MT6592
++endif
++
+ LOCAL_MODULE:= init
+ LOCAL_C_INCLUDES += \
+     system/extras/ext4_utils \
+diff --git a/init/init.cpp b/init/init.cpp
+index 2171066..edc9a57 100644
+--- a/init/init.cpp
++++ b/init/init.cpp
+@@ -807,7 +807,14 @@ static void export_kernel_boot_props() {
+         { "ro.boot.mode",       "ro.bootmode",   "unknown", },
+         { "ro.boot.baseband",   "ro.baseband",   "unknown", },
+         { "ro.boot.bootloader", "ro.bootloader", "unknown", },
+-        { "ro.boot.hardware",   "ro.hardware",   "unknown", },
++#ifdef MTK_MT6582     
++        { "ro.boot.hardware",   "ro.hardware",   "mt6582", },
++#endif
++#ifdef MTK_MT6592     
++        { "ro.boot.hardware",   "ro.hardware",   "mt6592", },
++#endif  
++
++#ifndef IGNORE_RO_BOOT_REVISION
+         { "ro.boot.revision",   "ro.revision",   "0", },
+     };
+     for (size_t i = 0; i < ARRAY_SIZE(prop_map); i++) {
+-- 
+2.9.3
+

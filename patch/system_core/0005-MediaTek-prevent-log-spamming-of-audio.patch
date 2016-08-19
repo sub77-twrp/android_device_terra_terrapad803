@@ -1,0 +1,44 @@
+From cc4a663dc609fcb9a17eef4f0e833dac05f69ee0 Mon Sep 17 00:00:00 2001
+From: ferhung-mtk <ferhung27@gmail.com>
+Date: Sun, 17 Apr 2016 17:11:36 +0800
+Subject: [PATCH 05/10] MediaTek: prevent log spamming of audio.
+
+Signed-off-by: sub77 <sub77@ymail.com>
+---
+ liblog/logd_write.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/liblog/logd_write.c b/liblog/logd_write.c
+index 6789784..4d9d4d8 100644
+--- a/liblog/logd_write.c
++++ b/liblog/logd_write.c
+@@ -489,6 +489,26 @@ int __android_log_buf_write(int bufID, int prio, const char *tag, const char *ms
+     if (!tag)
+         tag = "";
+ 
++    // MediaTek: Prevent log spamming of audio.
++    if (!strcmp(tag, "AudioMTKFilterManager") ||
++        !strcmp(tag, "AudioMTKFilter") ||
++        !strcmp(tag, "AudioMTKStreamOut") ||
++        !strcmp(tag, "AudioVPWStreamIn") ||
++        !strcmp(tag, "AudioDigitalControl") ||
++        !strcmp(tag, "AudioLoopbackController") ||
++        !strcmp(tag, "AudioMTKVolumeController") ||
++        !strcmp(tag, "AudioDigitalControl") ||
++        !strcmp(tag, "AudioAnalogControl") ||
++        !strcmp(tag, "AudioAfeReg") ||
++        !strcmp(tag, "AudioAnalogReg") ||
++        !strcmp(tag, "AudioPlatformDevice") ||
++        !strcmp(tag, "AudioMachineDevice") ||
++        !strcmp(tag, "MtkAudioLoud") ||
++        !strcmp(tag, "LoopbackManager") ||
++        !strcmp(tag, "AudioInterConnection")) {
++            return 0;
++    }
++
+     /* XXX: This needs to go! */
+     if ((bufID != LOG_ID_RADIO) &&
+          (!strcmp(tag, "HTC_RIL") ||
+-- 
+2.9.3
+
