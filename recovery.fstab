@@ -1,0 +1,13 @@
+# mount point   fstype      device          [device2]
+
+/logo           emmc  /dev/logo                                 flags=display="logo";backup=1
+/nvram          emmc  /dev/nvram                                flags=display="nvram";backup=1
+/uboot          emmc  /dev/uboot                                flags=display="uboot";backup=1
+/boot           emmc  /dev/bootimg                              flags=display="bootimg";backup=1
+/recovery       emmc  /dev/recovery                             flags=display="recovery";backup=1
+/system         ext4  /dev/block/mmcblk0p5
+/cache          ext4  /dev/block/mmcblk0p6
+/data           ext4  /dev/block/mmcblk0p7                      
+/sdcard         vfat  /dev/block/mmcblk0p8                      flags=display="INT Storage";removable
+/external_sd   	auto  /dev/block/mmcblk1p1  /dev/block/mmcblk1  flags=display="EXT Storage";removable
+#/sd-ext        auto  /dev/block/mmcblk1p2
