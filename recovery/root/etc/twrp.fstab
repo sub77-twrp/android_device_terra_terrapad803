@@ -1,0 +1,11 @@
+# mount point   fstype      device          [device2]
+
+/boot       	emmc /dev/bootimg
+/misc       	emmc /dev/misc
+/recovery   	emmc /dev/recovery
+/system     	ext4 /dev/block/mmcblk0p5
+/cache     		ext4 /dev/block/mmcblk0p6
+/data       	ext4 /dev/block/mmcblk0p7
+/emmc       	vfat /dev/block/mmcblk0p8
+/external_sd  	auto /dev/block/mmcblk1p1 /dev/block/mmcblk1    flags=display="External SDcard";storage;removable;backup=0
+/sd-ext     	auto /dev/block/mmcblk1p2                       flags=display="USB-OTG";storage;removable;backup=0
