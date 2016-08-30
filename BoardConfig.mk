@@ -77,3 +77,11 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_INCLUDE_FB2PNG := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 #TW_EXCLUDE_SUPERSU := true
+
+# MultiROM
+MR_DEVICE_SPECIFIC_VERSION := a
+#TARGET_RECOVERY_IS_MULTIROM := true
+
+ifeq ($(TARGET_RECOVERY_IS_MULTIROM),true)
+       -include device/terra/terrapad803/multirom/BoardConfigMultirom.mk
+endif
