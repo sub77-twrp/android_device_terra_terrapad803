@@ -1,16 +1,16 @@
-From 167b6defb01686e22fede1d5471421a40916cce6 Mon Sep 17 00:00:00 2001
-From: ferhung-mtk <ferhung27@gmail.com>
-Date: Sun, 3 Apr 2016 10:33:45 +0800
-Subject: [PATCH 2/2] MediaTek: fix reboot for MTK.
+From a98b3a7330daba86ceecd2179f1db1ccc3c66414 Mon Sep 17 00:00:00 2001
+From: sub77 <sub77@ymail.com>
+Date: Tue, 13 Sep 2016 05:19:18 +0200
+Subject: [PATCH 3/3] MediaTek: fix reboot for MTKD
 
-Signed-off-by: sub77 <sub77@ymail.com>
+Change-Id: Ie924ccac2ebb58960a8d8b50121f7c2f9a8b0b41
 ---
  twrp-functions.cpp | 33 +++++++++++++++++----------------
  twrp.cpp           |  6 +++++-
  2 files changed, 22 insertions(+), 17 deletions(-)
 
 diff --git a/twrp-functions.cpp b/twrp-functions.cpp
-index 8cc094f..611eba6 100644
+index fffd9b7..b651e3e 100644
 --- a/twrp-functions.cpp
 +++ b/twrp-functions.cpp
 @@ -45,12 +45,14 @@
@@ -26,9 +26,9 @@ index 8cc094f..611eba6 100644
  	#include "openaes/inc/oaes_lib.h"
  #endif
 +#include "cutils/android_reboot.h"
+ #include "set_metadata.h"
  
  extern "C" {
- 	#include "libcrecovery/common.h"
 @@ -537,46 +539,45 @@ int TWFunc::tw_reboot(RebootCommand command)
  	switch (command) {
  		case rb_current:
@@ -91,7 +91,7 @@ index 8cc094f..611eba6 100644
  			return -1;
  	}
 diff --git a/twrp.cpp b/twrp.cpp
-index 5d64694..0d29ef8 100644
+index 859a7fc..3a789e4 100644
 --- a/twrp.cpp
 +++ b/twrp.cpp
 @@ -402,6 +402,10 @@ int main(int argc, char **argv) {
@@ -107,5 +107,5 @@ index 5d64694..0d29ef8 100644
  	return 0;
  }
 -- 
-2.9.3
+2.7.4
 

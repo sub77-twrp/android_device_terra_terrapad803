@@ -53,25 +53,30 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadg
 # Sepolicy hack for old kernel, our mt6582 & mt6592 version is 26.
 POLICYVERS := 26
 
-# TWRP
-TW_DEVICE_SPECIFIC_VERSION := 3.0.2-3
-TW_THEME := portrait_hdpi
+
+# TWRP stuff
 DEVICE_RESOLUTION := 800x1280
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 800
+TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
-TW_MAX_BRIGHTNESS := 255
-TW_NO_SCREEN_BLANK := true
-TW_INTERNAL_STORAGE_PATH := "/sdcard"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+RECOVERY_SDCARD_ON_DATA := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-#TW_CRYPTO_FS_TYPE := "ext4"
-#TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p7"
-#TW_CRYPTO_MNT_POINT := "/and-sec"
-#TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
-#TW_EXCLUDE_SUPERSU := true
-TW_INCLUDE_FB2PNG := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p8"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
-
+TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+#TW_EXCLUDE_SUPERSU := true
+#TW_EXTRA_LANGUAGES := true
+#TW_BUILD_ZH_CN_SUPPORT := true
+#TW_DEFAULT_LANGUAGE := zh_CN
+#TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/recovery/init.rc
+#TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/recovery_kernel
+BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p1

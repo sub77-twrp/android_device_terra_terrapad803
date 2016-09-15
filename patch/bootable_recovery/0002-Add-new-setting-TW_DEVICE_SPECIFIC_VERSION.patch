@@ -1,7 +1,7 @@
-From d2b401b08faea63fcc516dc9efbd627df909f712 Mon Sep 17 00:00:00 2001
+From 8d31326bf15dd3f6eaaddd61c450ade9f3979f7b Mon Sep 17 00:00:00 2001
 From: sub77 <sub77@ymail.com>
 Date: Mon, 7 Mar 2016 09:22:18 -0600
-Subject: [PATCH] Add new setting TW_DEVICE_SPECIFIC_VERSION
+Subject: [PATCH 2/3] Add new setting TW_DEVICE_SPECIFIC_VERSION
 
 * If TW_DEVICE_SPECIFIC_VERSION is set in BoardConfig, it will
 * override the TW_VERSION_STR which is set in recovery/variables.h
@@ -14,10 +14,10 @@ Signed-off-by: sub77 <sub77@ymail.com>
  2 files changed, 7 insertions(+)
 
 diff --git a/Android.mk b/Android.mk
-index bb22a3e..f3666c3 100644
+index 62ef11a..ed1a882 100644
 --- a/Android.mk
 +++ b/Android.mk
-@@ -328,6 +328,9 @@ ifneq ($(TW_DEFAULT_LANGUAGE),)
+@@ -341,6 +341,9 @@ ifneq ($(TW_DEFAULT_LANGUAGE),)
  else
      LOCAL_CFLAGS += -DTW_DEFAULT_LANGUAGE=en
  endif
@@ -44,5 +44,5 @@ index 241c7dc..63e6969 100644
  #define TW_USE_COMPRESSION_VAR      "tw_use_compression"
  #define TW_FILENAME                 "tw_filename"
 -- 
-2.9.3
+2.7.4
 
